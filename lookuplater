@@ -1,0 +1,77 @@
+##elif current_step == "Data Profiling":
+#    st.title("Step 2: Data Profiling")
+#
+#    # Introduction Text
+#    st.markdown("""
+#    ### What is Data Profiling?
+#    Data profiling examines your dataset to extract key insights such as:
+#    - Statistical summaries
+#    - Missing data patterns
+#    - Relationships and correlations between variables
+#
+#    Relax while we process your data. You'll see live progress updates below.
+#    """)
+#
+#    if "dataset" in st.session_state:
+#        dataset = st.session_state["dataset"]
+#
+#        if "data_profiler" not in st.session_state:
+#            st.session_state["data_profiler"] = None
+#
+#        if st.session_state["data_profiler"] is None:
+#            # Placeholders for Streamlit updates
+#            progress_bar = st.progress(0)
+#            progress_status = st.empty()
+#            detailed_logs = st.empty()
+#
+#            try:
+#                # Profiling steps with terminal outputs
+#                profiling_steps = [
+#                    ("Summarizing dataset...", 25),
+#                    ("Generating report structure...", 50),
+#                    ("Rendering HTML report...", 75),
+#                    ("Exporting report to file...", 100),
+#                ]
+#
+#                current_progress = 0
+#                for step, progress in profiling_steps:
+#                    # Terminal output
+#                    print(f"Terminal Output: {step} - {progress}%")
+#
+#                    # Streamlit progress updates
+#                    progress_status.text(step)
+#                    detailed_logs.text(f"Step '{step}' completed ({progress}%).")
+#                    progress_bar.progress(progress)
+#                    time.sleep(1.5)  # Simulate processing time
+#
+#                # Generate and save the profiling report
+#                print("Terminal Output: Finalizing the profiling report...")
+#                st.info("Finalizing the profiling report... Please Wait")
+#                profile = ProfileReport(
+#                    dataset,
+#                    title="Data Profiling Report",
+#                    progress_bar=False
+#                )
+#                profile.to_file("data_report.html")
+#                st.session_state["data_profiler"] = profile
+#
+#                # Completion messages
+#                print("Terminal Output: Data profiling completed successfully!")
+#                st.success("Data profiling completed successfully! 🎉")
+#
+#                # Allow users to view the report
+#                st.markdown("### View Profiling Report")
+#                if st.button("Show Report"):
+#                    st_profile_report(profile)
+#
+#            except Exception as e:
+#                print(f"Terminal Output: Error during profiling: {e}")
+#                st.error(f"Error during profiling: {e}")
+#        else:
+#            st.success("Data profiling has already been completed.")
+#            st.markdown("### View Existing Profiling Report")
+#            if st.button("Show Report"):
+#                st_profile_report(st.session_state["data_profiler"])
+#
+#    else:
+#        st.error("Please upload a dataset first.")
